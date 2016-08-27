@@ -56,7 +56,9 @@ public class GameController : MonoBehaviour {
         {
             var enemyGap = Constants.World.ENEMY_WIDTH * 2;
             var offsetToMiddle = (Constants.World.NUM_OF_ENEMIES / 2) * (Constants.World.ENEMY_WIDTH + enemyGap);
-            enemyCubes.Add(Instantiate(enemyPrefab, new Vector3(i * (Constants.World.ENEMY_WIDTH + enemyGap) - offsetToMiddle, 0, Constants.World.MAX_Z), Quaternion.identity));
+            GameObject enemyObject = Instantiate(enemyPrefab, new Vector3(i * (Constants.World.ENEMY_WIDTH + enemyGap) - offsetToMiddle, 0, Constants.World.MAX_Z), Quaternion.identity) as GameObject;
+            enemyObject.tag = Constants.Tags.ENEMY_TAG;
+            enemyCubes.Add(enemyObject);
         }
     }
 

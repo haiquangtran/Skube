@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Assets.Scripts;
 
 public class PlayerController : MonoBehaviour {
 
@@ -15,6 +16,10 @@ public class PlayerController : MonoBehaviour {
 
     void OnCollisionEnter(Collision other)
     {
-        Debug.Log("im coliding ");
+        if (other.collider.tag == Constants.Tags.ENEMY_TAG)
+        {
+            //We have colided with an enemy 
+
+        }
     }
 }
