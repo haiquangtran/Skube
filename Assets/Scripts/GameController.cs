@@ -62,6 +62,20 @@ public class GameController : MonoBehaviour
             var startY = Random.Range(Constants.World.MIN_Y, Constants.World.MAX_Y);
             enemyCubes.Add(Instantiate(enemyPrefab, new Vector3(startX, startY, Constants.World.MAX_Z), Quaternion.identity));
         }
+
+        // Add styling
+        DecorateEnemyCubes();
+    }
+
+    private void DecorateEnemyCubes()
+    {
+        foreach (GameObject enemyCube in enemyCubes)
+        {
+            // Size
+            var scaleRange = Random.Range(Constants.World.ENEMY_MIN_SIZE, Constants.World.ENEMY_MAX_SIZE);
+            Vector3 scaleVector = new Vector3(scaleRange, scaleRange, scaleRange);
+            enemyCube.transform.localScale = scaleVector;
+        }
     }
 
     private void AnimateEnemyCube(GameObject enemyCube)
@@ -71,7 +85,7 @@ public class GameController : MonoBehaviour
         enemyCube.transform.position += newPosition;
 
         // Rotation
-        Vector3 rotationVector = new Vector3(Random.Range(-200.0f, 0.0f), 0, 0);
+        Vector3 rotationVector = new Vector3(Random.Range(-200.0f, 0.0f), Random.Range(-100f, 0.0f), 0);
         enemyCube.transform.Rotate(rotationVector * Time.deltaTime);
     }
 
