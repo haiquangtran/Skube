@@ -2,7 +2,7 @@
 using System.Collections;
 using Assets.Scripts;
 
-public class PlayerController : MonoBehaviour {
+public class BulletScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
@@ -17,10 +17,12 @@ public class PlayerController : MonoBehaviour {
     void OnCollisionEnter(Collision other)
     {
 
+        Debug.Log("collided");
+
         if (other.collider.tag == Constants.Tags.ENEMY_TAG)
         {
             //We have colided with an enemy 
-            Debug.Log("YOU LOOSE");
+            Debug.Log("shooooootttt");
         }
     }
 }
