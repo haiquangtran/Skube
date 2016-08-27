@@ -22,7 +22,7 @@ namespace Assets.Scripts
             public const int MAX_X = 100;
             public const int MIN_Y = 0;
             public const int MAX_Y = 100;
-            public const int MIN_Z = 1;
+            public const int MIN_Z = 0;
             public const int MAX_Z = 50;
         }
 
