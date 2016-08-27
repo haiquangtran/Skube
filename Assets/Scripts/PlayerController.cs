@@ -12,4 +12,9 @@ public class PlayerController : MonoBehaviour {
 	void Update () {
 	
 	}
+
+    void OnCollisionEnter(Collision other)
+    {
+        Debug.Log("im coliding ");
+    }
 }

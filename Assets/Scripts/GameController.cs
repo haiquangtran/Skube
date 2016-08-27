@@ -19,7 +19,7 @@ public class GameController : MonoBehaviour {
         }
 
         //player cube
-        playerCube = (GameObject)Instantiate(prefab, new Vector3(0, 0, -5), Quaternion.identity);
+        //playerCube = (GameObject)Instantiate(prefab, new Vector3(0, 0, -5), Quaternion.identity);
 
     }
 
@@ -33,8 +33,6 @@ public class GameController : MonoBehaviour {
         }
 	}
 
-    void OnTriggerEnter(Collider other){
-        Debug.Log("collided");
-    }
+  
 
 }
