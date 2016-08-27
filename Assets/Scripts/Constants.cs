@@ -23,5 +23,9 @@ namespace Assets.Scripts
             public const int MAX_Z = 50;
         }
 
+        public static class Tags
+        {
+            public const string ENEMY_TAG = "Enemy";
+        }
     }
 }
