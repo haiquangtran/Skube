@@ -10,7 +10,7 @@ namespace Assets.Scripts
         public static class World
         { 
             // Enemies
-            public const int NUM_OF_ENEMIES = 20;
+            public const int NUM_OF_ENEMIES = 10;
             public const int ENEMY_WIDTH = 1; 
             public const float ENEMY_SPEED = -0.1f;
             

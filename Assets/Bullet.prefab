@@ -88,10 +88,10 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011903804186}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 2
   m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
+  m_AngularDrag: 0
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -119,6 +119,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e08f822476be174cab8037d905059e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  remainsCube: {fileID: 1000012660857540, guid: b3fd114b921d44840a9c7ba9bbbb3af4,
+    type: 2}
 --- !u!135 &135000011525520984
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -129,5 +131,5 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.1
+  m_Radius: 4
   m_Center: {x: 0, y: 0, z: 0}
