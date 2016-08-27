@@ -25,6 +25,7 @@ public class GameController : MonoBehaviour {
 	    foreach(GameObject c in enemyCubes)
         {
             Vector3 temp = new Vector3(0, 0, -0.05f);
+
             c.transform.position += temp;
         }
 	}
