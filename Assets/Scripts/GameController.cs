@@ -1,35 +1,29 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Assets.Scripts;
 
 public class GameController : MonoBehaviour {
 
     // Use this for initialization
     public GameObject prefab;
-    private ArrayList cubes = new ArrayList();
-    public int gameX = 1000;
-    public int gameZ = 1000;
-    public int gameY = 500;
     private ArrayList enemyCubes = new ArrayList();
-    private GameObject playerCube;
+
     void Start()
     {
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < Constants.World.NUM_OF_ENEMIES; i++)
         {
-            enemyCubes.Add(Instantiate(prefab, new Vector3(i * 2.0f - 10.0f, 0, 0), Quaternion.identity));
+            var enemyGap = Constants.World.ENEMY_WIDTH;
+            var offsetToMiddle = (Constants.World.NUM_OF_ENEMIES / 2) * (Constants.World.ENEMY_WIDTH + enemyGap);
+            enemyCubes.Add(Instantiate(prefab, new Vector3(i * (Constants.World.ENEMY_WIDTH + enemyGap) - offsetToMiddle, 0, Constants.World.MAX_Z), Quaternion.identity));
         }
-
-        //player cube
-        playerCube = (GameObject)Instantiate(prefab, new Vector3(0, 0, -5), Quaternion.identity);
-
     }
 
     // Update is called once per frame
     void Update () {
-	    foreach(GameObject c in enemyCubes)
+	    foreach(GameObject enemyCube in enemyCubes)
         {
-            Vector3 temp = new Vector3(0, 0, -0.05f);
-
-            c.transform.position += temp;
+            Vector3 newPosition = new Vector3(0, 0, Constants.World.ENEMY_SPEED);
+            enemyCube.transform.position += newPosition;
         }
 	}
 
