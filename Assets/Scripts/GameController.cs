@@ -2,7 +2,8 @@
 using System.Collections;
 using Assets.Scripts;
 
-public class GameController : MonoBehaviour {
+public class GameController : MonoBehaviour
+{
 
     // Use this for initialization
     public GameObject enemyPrefab;
@@ -15,14 +16,14 @@ public class GameController : MonoBehaviour {
     }
 
     // Update is called once per frame
-    public void Update () {
+    public void Update()
+    {
         deletedEnemyCubes = new ArrayList();
 
-        // Move enemies
-	    foreach (GameObject enemyCube in enemyCubes)
+        // Animate enemies
+        foreach (GameObject enemyCube in enemyCubes)
         {
-            Vector3 newPosition = new Vector3(0, 0, Constants.World.ENEMY_SPEED);
-            enemyCube.transform.position += newPosition;
+            AnimateEnemyCube(enemyCube);
 
             if (IsOutOfWorldBounds(enemyCube))
             {
@@ -41,12 +42,12 @@ public class GameController : MonoBehaviour {
         {
             GenerateEnemyCubes();
         }
-	}
+    }
 
     private bool IsOutOfWorldBounds(GameObject cube)
     {
         var enemyPosition = cube.transform.position;
-        return enemyPosition.z < Constants.World.MIN_Z || enemyPosition.z > Constants.World.MAX_Z || enemyPosition.x < Constants.World.MIN_X || 
+        return enemyPosition.z < Constants.World.MIN_Z || enemyPosition.z > Constants.World.MAX_Z || enemyPosition.x < Constants.World.MIN_X ||
             enemyPosition.x > Constants.World.MAX_X || enemyPosition.y < Constants.World.MIN_Y || enemyPosition.y > Constants.World.MAX_Y;
     }
 
@@ -58,6 +59,17 @@ public class GameController : MonoBehaviour {
             var offsetToMiddle = (Constants.World.NUM_OF_ENEMIES / 2) * (Constants.World.ENEMY_WIDTH + enemyGap);
             enemyCubes.Add(Instantiate(enemyPrefab, new Vector3(i * (Constants.World.ENEMY_WIDTH + enemyGap) - offsetToMiddle, 0, Constants.World.MAX_Z), Quaternion.identity));
         }
+    }
+
+    private void AnimateEnemyCube(GameObject enemyCube)
+    {
+        // Move
+        Vector3 newPosition = new Vector3(0, 0, Constants.World.ENEMY_SPEED);
+        enemyCube.transform.position += newPosition;
+
+        // Rotation
+        Vector3 rotationVector = new Vector3(Random.Range(-200.0f, 0.0f), Random.Range(-100.0f, 0f), 0);
+        enemyCube.transform.Rotate(rotationVector * Time.deltaTime);
     }
 
 }
