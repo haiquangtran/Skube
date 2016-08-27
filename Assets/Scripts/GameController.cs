@@ -6,6 +6,9 @@ public class GameController : MonoBehaviour {
     // Use this for initialization
     public GameObject prefab;
     private ArrayList cubes = new ArrayList();
+    public int gameX = 1000;
+    public int gameZ = 1000;
+    public int gameY = 500;
 
     void Start()
     {
