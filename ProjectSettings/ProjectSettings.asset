@@ -516,7 +516,7 @@ PlayerSettings:
   XboxOne::VR::enabledDevices: []
   iOS::VR::enabledDevices: []
   tvOS::VR::enabledDevices: []
-  cloudProjectId: de5318bd-2efe-43d2-aeb8-f7c1c5611cf7
-  projectName: VRTest
-  organizationId: dev_iam
+  cloudProjectId: 
+  projectName: 
+  organizationId: 
   cloudEnabled: 0

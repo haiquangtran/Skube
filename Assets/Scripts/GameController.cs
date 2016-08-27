@@ -8,10 +8,13 @@ public class GameController : MonoBehaviour {
     public GameObject enemyPrefab;
     private ArrayList enemyCubes = new ArrayList();
     private ArrayList deletedEnemyCubes = new ArrayList();
+    private ArrayList butterflies = new ArrayList();
+    public GameObject butterflyPreFab;
 
     public void Start()
     {
         GenerateEnemyCubes();
+        GenerateButterfly();
     }
 
     // Update is called once per frame
@@ -58,6 +61,11 @@ public class GameController : MonoBehaviour {
             var offsetToMiddle = (Constants.World.NUM_OF_ENEMIES / 2) * (Constants.World.ENEMY_WIDTH + enemyGap);
             enemyCubes.Add(Instantiate(enemyPrefab, new Vector3(i * (Constants.World.ENEMY_WIDTH + enemyGap) - offsetToMiddle, 0, Constants.World.MAX_Z), Quaternion.identity));
         }
+    }
+
+    private void GenerateButterfly()
+    {
+        butterflies.Add(Instantiate(butterflyPreFab, new Vector3(0, 30, 30), Quaternion.identity));
     }
 
 }
