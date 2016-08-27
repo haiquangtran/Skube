@@ -17,7 +17,7 @@ public class GameController : MonoBehaviour {
     void Update () {
 	    foreach(GameObject c in cubes)
         {
-            Vector3 temp = new Vector3(0, 0, -0.3f);
+            Vector3 temp = new Vector3(0, 0, -0.1f);
             c.transform.position += temp;
         }
 	}
