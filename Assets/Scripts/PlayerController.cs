@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour {
     void OnCollisionEnter(Collision other)
     {
 
+        Debug.Log("PLAYER CUBE");
         if (other.collider.tag == Constants.Tags.ENEMY_TAG)
         {
             //We have colided with an enemy 
