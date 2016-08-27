@@ -3,9 +3,9 @@ using System.Collections;
 using Assets.Scripts;
 
 public class BulletScript : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
+    public GameObject remainsCube;
+    // Use this for initialization
+    void Start () {
 	
 	}
 	
@@ -16,12 +16,11 @@ public class BulletScript : MonoBehaviour {
 
     void OnCollisionEnter(Collision other)
     {
-
-        Debug.Log("collided");
-
         if (other.collider.tag == Constants.Tags.ENEMY_TAG)
         {
             //We have colided with an enemy 
+            Instantiate(remainsCube, transform.position, transform.rotation);
+            Destroy(other.gameObject);
             Debug.Log("shooooootttt");
         }
     }

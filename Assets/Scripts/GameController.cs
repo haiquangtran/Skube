@@ -13,7 +13,7 @@ public class GameController : MonoBehaviour
     public void Start()
     {
         // Generate new enemies every second
-        float interval = 1f;
+        float interval = 2f;
         InvokeRepeating("GenerateEnemyCubes", 0, interval);
     }
 
@@ -25,7 +25,10 @@ public class GameController : MonoBehaviour
         // Animate enemies
         foreach (GameObject enemyCube in enemyCubes)
         {
-            AnimateEnemyCube(enemyCube);
+            if(enemyCube != null)
+            {
+                AnimateEnemyCube(enemyCube);
+            }
 
             if (IsOutOfWorldBounds(enemyCube))
             {
@@ -42,9 +45,13 @@ public class GameController : MonoBehaviour
 
     private bool IsOutOfWorldBounds(GameObject cube)
     {
-        var enemyPosition = cube.transform.position;
-        return enemyPosition.z < Constants.World.MIN_Z || enemyPosition.z > Constants.World.MAX_Z || enemyPosition.x < Constants.World.MIN_X ||
-            enemyPosition.x > Constants.World.MAX_X || enemyPosition.y < Constants.World.MIN_Y || enemyPosition.y > Constants.World.MAX_Y;
+        if (cube != null)
+        {
+            var enemyPosition = cube.transform.position;
+            return enemyPosition.z < Constants.World.MIN_Z || enemyPosition.z > Constants.World.MAX_Z || enemyPosition.x < Constants.World.MIN_X ||
+                enemyPosition.x > Constants.World.MAX_X || enemyPosition.y < Constants.World.MIN_Y || enemyPosition.y > Constants.World.MAX_Y;
+        }
+        return true;
     }
 
     private void GenerateEnemyCubes()
