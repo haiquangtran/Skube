@@ -282,7 +282,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92ce3c8f8728c434cbdedb4550c6ac40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 1000013346108966, guid: 2533e11f93dc1ea42b99c0f2dcf68c98, type: 2}
+  enemyPrefab: {fileID: 1000013346108966, guid: 2533e11f93dc1ea42b99c0f2dcf68c98,
+    type: 2}
 --- !u!65 &1354819338
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -324,7 +325,7 @@ GameObject:
   - 54: {fileID: 1584678155}
   - 114: {fileID: 1584678160}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
