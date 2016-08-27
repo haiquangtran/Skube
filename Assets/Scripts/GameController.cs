@@ -12,7 +12,9 @@ public class GameController : MonoBehaviour
 
     public void Start()
     {
-        GenerateEnemyCubes();
+        // Generate new enemies every second
+        float interval = 1f;
+        InvokeRepeating("GenerateEnemyCubes", 0, interval);
     }
 
     // Update is called once per frame
@@ -36,12 +38,6 @@ public class GameController : MonoBehaviour
             enemyCubes.Remove(enemy);
             Destroy(enemy);
         }
-
-        // Generate new enemies
-        if (enemyCubes.Count == 0)
-        {
-            GenerateEnemyCubes();
-        }
     }
 
     private bool IsOutOfWorldBounds(GameObject cube)
@@ -55,9 +51,9 @@ public class GameController : MonoBehaviour
     {
         for (int i = 0; i < Constants.World.NUM_OF_ENEMIES; i++)
         {
-            var enemyGap = Constants.World.ENEMY_WIDTH * 2;
-            var offsetToMiddle = (Constants.World.NUM_OF_ENEMIES / 2) * (Constants.World.ENEMY_WIDTH + enemyGap);
-            enemyCubes.Add(Instantiate(enemyPrefab, new Vector3(i * (Constants.World.ENEMY_WIDTH + enemyGap) - offsetToMiddle, 0, Constants.World.MAX_Z), Quaternion.identity));
+            var startX = Random.Range(Constants.World.MIN_X, Constants.World.MAX_X);
+            var startY = Random.Range(Constants.World.MIN_Y, Constants.World.MAX_Y);
+            enemyCubes.Add(Instantiate(enemyPrefab, new Vector3(startX, startY, Constants.World.MAX_Z), Quaternion.identity));
         }
     }
 
@@ -68,7 +64,7 @@ public class GameController : MonoBehaviour
         enemyCube.transform.position += newPosition;
 
         // Rotation
-        Vector3 rotationVector = new Vector3(Random.Range(-200.0f, 0.0f), Random.Range(-100.0f, 0f), 0);
+        Vector3 rotationVector = new Vector3(Random.Range(-200.0f, 0.0f), 0, 0);
         enemyCube.transform.Rotate(rotationVector * Time.deltaTime);
     }
 

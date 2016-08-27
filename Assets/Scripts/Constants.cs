@@ -15,10 +15,10 @@ namespace Assets.Scripts
             public const float ENEMY_SPEED = -0.1f;
             
             // Bounds of the world
-            public const int MIN_X = -50;
-            public const int MAX_X = 50;
-            public const int MIN_Y = 0;
-            public const int MAX_Y = 100;
+            public const int MIN_X = -10;
+            public const int MAX_X = 10;
+            public const int MIN_Y = -25;
+            public const int MAX_Y = 25;
             public const int MIN_Z = -50;
             public const int MAX_Z = 50;
         }
