@@ -5,16 +5,12 @@ public class GameController : MonoBehaviour {
 
     // Use this for initialization
     public GameObject prefab;
-<<<<<<< HEAD
     private ArrayList cubes = new ArrayList();
     public int gameX = 1000;
     public int gameZ = 1000;
     public int gameY = 500;
-=======
     private ArrayList enemyCubes = new ArrayList();
     private GameObject playerCube;
->>>>>>> a88d5a9e55207ca947e5591e21080ce54e5c64ab
-
     void Start()
     {
         for (int i = 0; i < 10; i++)
