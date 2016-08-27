@@ -2,10 +2,10 @@
 using System.Collections;
 using Assets.Scripts;
 
-public class PlayerController : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
+public class BulletScript : MonoBehaviour {
+    public GameObject remainsCube;
+    // Use this for initialization
+    void Start () {
 	
 	}
 	
@@ -16,12 +16,12 @@ public class PlayerController : MonoBehaviour {
 
     void OnCollisionEnter(Collision other)
     {
-
-        Debug.Log("PLAYER CUBE");
         if (other.collider.tag == Constants.Tags.ENEMY_TAG)
         {
             //We have colided with an enemy 
-            Debug.Log("YOU LOOSE");
+            Instantiate(remainsCube, transform.position, transform.rotation);
+            Destroy(other.gameObject);
+            Debug.Log("shooooootttt");
         }
     }
 }
