@@ -46,7 +46,7 @@ public class GameController : MonoBehaviour
         deletedEnemyCubes = new ArrayList();
 
         // Speed up every 10 seconds
-        IncreaseEnemySpeed(10.0f);
+        IncreaseEnemySpeed(5.0f);
 
         // Animate enemies
         foreach (GameObject enemyCube in enemyCubes)
@@ -96,7 +96,11 @@ public class GameController : MonoBehaviour
 
     private void GeneratePowerUps()
     {
-        for (int i = 0; i < Constants.World.NUM_OF_POWERUPS; i++)
+        // Power up goes directly to player
+        enemyCubes.Add(Instantiate(powerUpPrefab, new Vector3(0, 0, Constants.World.MAX_Z), Quaternion.identity));
+
+        // Random power ups
+        for (int i = 1; i < Constants.World.NUM_OF_POWERUPS; i++)
         {
             var startX = Random.Range(Constants.World.MIN_X, Constants.World.MAX_X);
             var startY = Random.Range(Constants.World.MIN_Y, Constants.World.MAX_Y);
@@ -122,7 +126,7 @@ public class GameController : MonoBehaviour
     private void GenerateDirectHits()
     {
         // Generate enemies that go directly to player between 2-8 seconds.
-        Invoke("GenerateDirectHitEnemyCube", Random.Range(4.0f, 8.0f));
+        Invoke("GenerateDirectHitEnemyCube", Random.Range(3.0f, 5.0f));
     }
 
     private void GenerateDirectHitEnemyCube()

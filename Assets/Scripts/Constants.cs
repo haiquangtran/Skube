@@ -16,8 +16,8 @@ namespace Assets.Scripts
             public const int ENEMY_MIN_SIZE = 1;
             public const int ENEMY_MAX_SIZE = 5;
             public const float ENEMY_MIN_SPEED = -0.1f;
-            public const float ENEMY_MAX_SPEED = -0.5f;
-            public const float ENEMY_SPEED_INCREMENT = -0.05f;
+            public const float ENEMY_MAX_SPEED = -10.0f;
+            public const float ENEMY_SPEED_INCREMENT = -0.1f;
 
             // Bounds of the world
             public const int MIN_X = -25;
