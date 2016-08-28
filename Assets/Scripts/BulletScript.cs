@@ -45,7 +45,7 @@ public class BulletScript : MonoBehaviour {
             }
             else
             {
-                SceneManager.LoadScene("NPEscreen");       
+                GameController.showNPEscreen = true; 
             }
             powerUpCollision(other);
             incrementScore(50);
