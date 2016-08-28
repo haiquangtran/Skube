@@ -40,17 +40,7 @@ public class BulletScript : MonoBehaviour {
         int turnOffBullets = UnityEngine.Random.Range(0, 3);
         if (turnOffBullets == 1)
         {
-            FireFire.turnOffBullets = true;
-            Debug.Log("bad power up");
-        }
-        else if (turnOffBullets == 2)
-        {
-            Debug.Log("good power up");
-            FireFire.doubleBullets = true;
-        }
-        else
-        {
-            int random = UnityEngine.Random.Range(0, 4);
+            int random = UnityEngine.Random.Range(0, 10);
             if (random == 0)
             {
                 ErrorText.errorText = "Null Pointer Exception";
@@ -61,12 +51,77 @@ public class BulletScript : MonoBehaviour {
             }
             else if (random == 2)
             {
-                ErrorText.errorText = "Such Pixel Jam, very game";
+                ErrorText.errorText = "PHP is undefined";
             }
             else if (random == 3)
             {
-                ErrorText.errorText = "No Mans Sky v2.0";
-            }        
+                ErrorText.errorText = "Array index out of bounds expcetion";
+            }
+            else if (random == 4)
+            {
+                ErrorText.errorText = "Stack overflow exception";
+            }
+            else if (random == 5)
+            {
+                ErrorText.errorText = "PixelJam.exe has encounted an exception and needs to close";
+            }
+            else if (random == 6)
+            {
+                ErrorText.errorText = "Illegal Argument Exception";
+            }
+            else if (random == 7)
+            {
+                ErrorText.errorText = "Class cast exception";
+            }
+            else if (random == 7)
+            {
+                ErrorText.errorText = "IOE Exception";
+            }
+        }
+        else if (turnOffBullets == 2)
+        {
+            Debug.Log("good power up");
+            FireFire.doubleBullets = true;
+        }
+        else
+        {
+            int random = UnityEngine.Random.Range(0, 10);
+            if (random == 0)
+            {
+                ErrorText.errorText = "Null Pointer Exception";
+            }
+            else if (random == 1)
+            {
+                ErrorText.errorText = "NPM build passed but failed";
+            }
+            else if (random == 2)
+            {
+                ErrorText.errorText = "PHP is undefined";
+            }
+            else if (random == 3)
+            {
+                ErrorText.errorText = "Array index out of bounds expcetion";
+            }
+            else if (random == 4)
+            {
+                ErrorText.errorText = "Stack overflow exception";
+            }
+            else if (random == 5)
+            {
+                ErrorText.errorText = "PixelJam.exe has encounted an exception and needs to close";
+            }
+            else if (random == 6)
+            {
+                ErrorText.errorText = "Illegal Argument Exception";
+            }
+            else if (random == 7)
+            {
+                ErrorText.errorText = "Class cast exception";
+            }
+            else if (random == 7)
+            {
+                ErrorText.errorText = "IOE Exception";
+            }
         }
     }
 
