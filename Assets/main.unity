@@ -482,6 +482,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 1000013346108966, guid: 2533e11f93dc1ea42b99c0f2dcf68c98,
     type: 2}
+  powerUpPrefab: {fileID: 1000011039105250, guid: e7ccb6344ed66c44589659c48079d293,
+    type: 2}
   background_music: {fileID: 1354819340}
 --- !u!65 &1354819338
 BoxCollider:
