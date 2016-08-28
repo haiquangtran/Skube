@@ -164,6 +164,7 @@ GameObject:
   - 224: {fileID: 191631667}
   - 222: {fileID: 191631669}
   - 114: {fileID: 191631668}
+  - 114: {fileID: 191631670}
   m_Layer: 5
   m_Name: NPE
   m_TagString: Untagged
@@ -228,6 +229,18 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 191631666}
+--- !u!114 &191631670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 191631666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04cce28ad97fc8e4cad83117aa3a767d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npeText: {fileID: 0}
 --- !u!1001 &202920155
 Prefab:
   m_ObjectHideFlags: 0
@@ -577,7 +590,7 @@ MonoBehaviour:
     type: 2}
   powerUpPrefab: {fileID: 1000011039105250, guid: e7ccb6344ed66c44589659c48079d293,
     type: 2}
-  npeText: {fileID: 191631666}
+  powerUpText: {fileID: 191631666}
   background_music: {fileID: 1354819340}
 --- !u!65 &1354819338
 BoxCollider:

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections;
 using Assets.Scripts;
@@ -9,7 +10,7 @@ public class GameController : MonoBehaviour
     // Use this for initialization
     public GameObject enemyPrefab;
     public GameObject powerUpPrefab;
-    public GameObject npeText;
+    public GameObject powerUpText;
     public AudioSource background_music;
     private ArrayList enemyCubes = new ArrayList();
     private ArrayList powerUps = new ArrayList();
@@ -28,13 +29,14 @@ public class GameController : MonoBehaviour
         float powerUpInterval = 10f;
         InvokeRepeating("GeneratePowerUps", 0, powerUpInterval);
 
-        float resetPowerUpChangesInterval = 3f;
+        float resetPowerUpChangesInterval = 5f;
         InvokeRepeating("ResetPowerUps", 15f, resetPowerUpChangesInterval);
 
-        //hide npe text
-        npeText.SetActive(false);
+        //default no error
+        ErrorText.errorText = "";
 
         background_music.Play();
+
     }
 
     // Update is called once per frame
@@ -79,8 +81,6 @@ public class GameController : MonoBehaviour
             Destroy(enemy);
         }
 
-        //show npe screen
-        npeText.SetActive(showNPEscreen);
     }
 
     private bool IsOutOfWorldBounds(GameObject cube)
@@ -176,7 +176,7 @@ public class GameController : MonoBehaviour
     {
         FireFire.turnOffBullets = false;
         FireFire.doubleBullets = false;
-        npeText.SetActive(false);
     }
+
 
 }

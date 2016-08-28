@@ -28,7 +28,6 @@ public class BulletScript : MonoBehaviour {
         }
         else if (other.collider.tag == Constants.Tags.POWERUP_TAG)
         {
-
             Destroy(other.gameObject);       
             powerUpCollision(other);
             incrementScore(50);
@@ -51,7 +50,23 @@ public class BulletScript : MonoBehaviour {
         }
         else
         {
-            GameController.showNPEscreen = true;
+            int random = UnityEngine.Random.Range(0, 4);
+            if (random == 0)
+            {
+                ErrorText.errorText = "Null Pointer Exception";
+            }
+            else if (random == 1)
+            {
+                ErrorText.errorText = "NPM build passed but failed";
+            }
+            else if (random == 2)
+            {
+                ErrorText.errorText = "Such Pixel Jam, very game";
+            }
+            else if (random == 3)
+            {
+                ErrorText.errorText = "No Mans Sky v2.0";
+            }        
         }
     }
 
