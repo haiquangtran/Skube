@@ -176,6 +176,7 @@ public class GameController : MonoBehaviour
     {
         FireFire.turnOffBullets = false;
         FireFire.doubleBullets = false;
+        ErrorText.errorText = "";
     }
 
 
