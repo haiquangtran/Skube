@@ -240,7 +240,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04cce28ad97fc8e4cad83117aa3a767d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  npeText: {fileID: 0}
+  npeText: {fileID: 191631668}
 --- !u!1001 &202920155
 Prefab:
   m_ObjectHideFlags: 0
