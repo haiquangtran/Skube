@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using System.Collections;
 using Assets.Scripts;
 
@@ -30,15 +31,21 @@ public class BulletScript : MonoBehaviour {
         {
             Destroy(other.gameObject);
             Score.score += 50;
-            float turnOffBullets = Random.Range(0, 1);
-            if(turnOffBullets <= 0.5)
+
+            int turnOffBullets = Random.Range(0, 3);
+            if(turnOffBullets == 1)
             {
                 FireFire.turnOffBullets = true;
                 Debug.Log("bad power up");
-            } else
+            }
+            else if (turnOffBullets == 2)
             {
                 Debug.Log("good power up");
                 FireFire.doubleBullets = true;
+            }
+            else
+            {
+                SceneManager.LoadScene("NPEscreen");       
             }
         }
     }

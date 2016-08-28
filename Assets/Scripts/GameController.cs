@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 using Assets.Scripts;
+
 
 public class GameController : MonoBehaviour
 {
@@ -15,6 +17,11 @@ public class GameController : MonoBehaviour
 
     public void Start()
     {
+        for (int i = 0; i < 10; i++)
+        {
+            int ran = Random.Range(0, 4);
+            print(ran);
+        }
         // Generate new enemies every second
         float interval = 1.5f;
         InvokeRepeating("GenerateEnemyCubes", 0, interval);
@@ -22,7 +29,7 @@ public class GameController : MonoBehaviour
         float powerUpInterval = 10f;
         InvokeRepeating("GeneratePowerUps", 0, powerUpInterval);
 
-        float resetPowerUpChangesInterval = 5f;
+        float resetPowerUpChangesInterval = 3f;
         InvokeRepeating("ResetPowerUps", 20f, resetPowerUpChangesInterval);
 
         background_music.Play();
@@ -148,6 +155,7 @@ public class GameController : MonoBehaviour
     {
         FireFire.turnOffBullets = false;
         FireFire.doubleBullets = false;
+        SceneManager.LoadScene("main");
     }
 
 }
