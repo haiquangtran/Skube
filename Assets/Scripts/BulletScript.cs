@@ -29,24 +29,7 @@ public class BulletScript : MonoBehaviour {
         else if (other.collider.tag == Constants.Tags.POWERUP_TAG)
         {
 
-            Destroy(other.gameObject);
-            Score.score += 50;
-
-            int turnOffBullets = UnityEngine.Random.Range(0, 3);
-            if(turnOffBullets == 1)
-            {
-                FireFire.turnOffBullets = true;
-                Debug.Log("bad power up");
-            }
-            else if (turnOffBullets == 2)
-            {
-                Debug.Log("good power up");
-                FireFire.doubleBullets = true;
-            }
-            else
-            {
-                GameController.showNPEscreen = true; 
-            }
+            Destroy(other.gameObject);       
             powerUpCollision(other);
             incrementScore(50);
 
@@ -55,17 +38,20 @@ public class BulletScript : MonoBehaviour {
 
     void powerUpCollision(Collision powerUp)
     {
-        Destroy(powerUp.gameObject);
-        float turnOffBullets = UnityEngine.Random.Range(0, 1);
-        if (turnOffBullets <= 0.5)
+        int turnOffBullets = UnityEngine.Random.Range(0, 3);
+        if (turnOffBullets == 1)
         {
             FireFire.turnOffBullets = true;
             Debug.Log("bad power up");
         }
-        else
+        else if (turnOffBullets == 2)
         {
             Debug.Log("good power up");
             FireFire.doubleBullets = true;
+        }
+        else
+        {
+            GameController.showNPEscreen = true;
         }
     }
 
