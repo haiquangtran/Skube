@@ -23,6 +23,8 @@ public class PlayerController : MonoBehaviour {
             //We have colided with an enemy 
             Debug.Log("YOU LOOSE");
             explosion_player.Play();
+
+            Application.LoadLevel(Application.loadedLevel);
         }
     }
 }
