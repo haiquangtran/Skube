@@ -3,9 +3,9 @@ using System.Collections;
 using Assets.Scripts;
 
 public class PlayerController : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
+    public AudioSource explosion_player;
+    // Use this for initialization
+    void Start () {
 	
 	}
 	
@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour {
         {
             //We have colided with an enemy 
             Debug.Log("YOU LOOSE");
+            explosion_player.Play();
         }
     }
 }

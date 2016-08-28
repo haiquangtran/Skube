@@ -5,6 +5,7 @@ using Assets.Scripts;
 
 public class BulletScript : MonoBehaviour {
     public GameObject remainsCube;
+    public AudioSource explosion_astroid;
     // Use this for initialization
     void Start () {
 
@@ -22,7 +23,7 @@ public class BulletScript : MonoBehaviour {
             //We have colided with an enemy 
             Instantiate(remainsCube, transform.position, transform.rotation);
             Destroy(other.gameObject);
-            Debug.Log("shooooootttt");
+            explosion_astroid.Play();
             Score.score += 100;
         }
         else if (other.collider.tag == Constants.Tags.POWERUP_TAG)
