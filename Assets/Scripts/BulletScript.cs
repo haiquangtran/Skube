@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 using Assets.Scripts;
+using System;
 
 public class BulletScript : MonoBehaviour {
     public GameObject remainsCube;
@@ -21,25 +22,55 @@ public class BulletScript : MonoBehaviour {
         if (other.collider.tag == Constants.Tags.ENEMY_TAG)
         {
             //We have colided with an enemy 
-            Instantiate(remainsCube, transform.position, transform.rotation);
-            Destroy(other.gameObject);
-            explosion_astroid.Play();
-            Score.score += 100;
+            enemyCollision(other);
+            incrementScore(100);
         }
         else if (other.collider.tag == Constants.Tags.POWERUP_TAG)
         {
-            Destroy(other.gameObject);
-            Score.score += 50;
-            float turnOffBullets = Random.Range(0, 1);
-            if(turnOffBullets <= 0.5)
-            {
-                FireFire.turnOffBullets = true;
-                Debug.Log("bad power up");
-            } else
-            {
-                Debug.Log("good power up");
-                FireFire.doubleBullets = true;
-            }
+            powerUpCollision(other);
+            incrementScore(50);
         }
+    }
+
+    void powerUpCollision(Collision powerUp)
+    {
+        Destroy(powerUp.gameObject);
+        float turnOffBullets = UnityEngine.Random.Range(0, 1);
+        if (turnOffBullets <= 0.5)
+        {
+            FireFire.turnOffBullets = true;
+            Debug.Log("bad power up");
+        }
+        else
+        {
+            Debug.Log("good power up");
+            FireFire.doubleBullets = true;
+        }
+    }
+
+    void enemyCollision(Collision enemy)
+    {
+        instantiateFragments();
+        Destroy(enemy.gameObject);
+        explosion_astroid.Play();
+    }
+
+    void instantiateFragments()
+    {
+        GameObject fragmentHandler;
+        fragmentHandler =  Instantiate(remainsCube, transform.position, transform.rotation) as GameObject;
+
+        //Retrieve the Rigidbody component from the instantiated fragments and control it.
+        Rigidbody Temporary_RigidBody;
+        Temporary_RigidBody = fragmentHandler.GetComponent<Rigidbody>();
+
+        //Basic Clean Up, set the Bullets to self destruct after 10 Seconds, I am being VERY generous here, normally 3 seconds is plenty.
+        Destroy(fragmentHandler, 2.0f);
+
+    }
+
+    private void incrementScore(int v)
+    {
+        Score.score += v;
     }
 }
