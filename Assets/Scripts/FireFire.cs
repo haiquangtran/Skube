@@ -15,13 +15,14 @@ public class FireFire : MonoBehaviour {
 
     public int button = 0;
 
+    public AudioSource weapon_player;
+
     Vector3 pos;
 
 
     // Use this for initialization
     void Start()
     {
-
     }
 
     // Update is called once per frame
@@ -56,6 +57,8 @@ public class FireFire : MonoBehaviour {
 
         //Basic Clean Up, set the Bullets to self destruct after 10 Seconds, I am being VERY generous here, normally 3 seconds is plenty.
         Destroy(Temporary_Bullet_Handler, 10.0f);
+
+        weapon_player.Play();
 
     }
 }

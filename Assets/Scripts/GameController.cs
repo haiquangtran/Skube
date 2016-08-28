@@ -9,12 +9,14 @@ public class GameController : MonoBehaviour
     public GameObject enemyPrefab;
     private ArrayList enemyCubes = new ArrayList();
     private ArrayList deletedEnemyCubes = new ArrayList();
+    public AudioSource background_music;
 
     public void Start()
     {
         // Generate new enemies every second
         float interval = 2f;
         InvokeRepeating("GenerateEnemyCubes", 0, interval);
+        background_music.Play();
     }
 
     // Update is called once per frame
@@ -32,7 +34,8 @@ public class GameController : MonoBehaviour
 
             if (IsOutOfWorldBounds(enemyCube))
             {
-                deletedEnemyCubes.Add(enemyCube);
+                deletedEnemyCubes.Add(enemyCube)
+                    ;
             }
         }
 
