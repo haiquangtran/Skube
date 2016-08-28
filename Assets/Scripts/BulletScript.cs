@@ -28,13 +28,16 @@ public class BulletScript : MonoBehaviour {
         else if (other.collider.tag == Constants.Tags.POWERUP_TAG)
         {
             Destroy(other.gameObject);
-            Debug.Log("shot power up");
-            //do stuff
             Score.score += 50;
             float turnOffBullets = Random.Range(0, 1);
             if(turnOffBullets <= 0.5)
             {
-                FireFire.turnOffBullets = true;               
+                FireFire.turnOffBullets = true;
+                Debug.Log("bad power up");
+            } else
+            {
+                Debug.Log("good power up");
+                FireFire.doubleBullets = true;
             }
         }
     }

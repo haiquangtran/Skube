@@ -147,6 +147,7 @@ public class GameController : MonoBehaviour
     private void ResetPowerUps()
     {
         FireFire.turnOffBullets = false;
+        FireFire.doubleBullets = false;
     }
 
 }
