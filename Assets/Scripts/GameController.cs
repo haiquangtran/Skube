@@ -29,7 +29,7 @@ public class GameController : MonoBehaviour
         InvokeRepeating("GeneratePowerUps", 0, powerUpInterval);
 
         float resetPowerUpChangesInterval = 3f;
-        InvokeRepeating("ResetPowerUps", 20f, resetPowerUpChangesInterval);
+        InvokeRepeating("ResetPowerUps", 15f, resetPowerUpChangesInterval);
 
         //hide npe text
         npeText.SetActive(false);
