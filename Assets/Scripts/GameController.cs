@@ -7,7 +7,9 @@ public class GameController : MonoBehaviour
 
     // Use this for initialization
     public GameObject enemyPrefab;
+    public GameObject powerUpPrefab;
     private ArrayList enemyCubes = new ArrayList();
+    private ArrayList powerUps = new ArrayList();
     private ArrayList deletedEnemyCubes = new ArrayList();
 
     public void Start()
@@ -15,6 +17,12 @@ public class GameController : MonoBehaviour
         // Generate new enemies every second
         float interval = 2f;
         InvokeRepeating("GenerateEnemyCubes", 0, interval);
+
+        float powerUpInterval = 10f;
+        InvokeRepeating("GeneratePowerUps", 0, powerUpInterval);
+
+        float resetPowerUpChangesInterval = 5f;
+        InvokeRepeating("ResetPowerUps", 20f, resetPowerUpChangesInterval);
     }
 
     // Update is called once per frame
@@ -36,6 +44,19 @@ public class GameController : MonoBehaviour
             }
         }
 
+        foreach (GameObject powerUp in powerUps)
+        {
+            if (powerUp != null)
+            {
+                AnimatePowerUp(powerUp);
+            }
+
+            if (IsOutOfWorldBounds(powerUp))
+            {
+                Destroy(powerUp);
+            }
+        }
+
         foreach (GameObject enemy in deletedEnemyCubes)
         {
             enemyCubes.Remove(enemy);
@@ -52,6 +73,16 @@ public class GameController : MonoBehaviour
                 enemyPosition.x > Constants.World.MAX_X || enemyPosition.y < Constants.World.MIN_Y || enemyPosition.y > Constants.World.MAX_Y;
         }
         return true;
+    }
+
+    private void GeneratePowerUps()
+    {
+        for (int i = 0; i < Constants.World.NUM_OF_POWERUPS; i++)
+        {
+            var startX = Random.Range(Constants.World.MIN_X, Constants.World.MAX_X);
+            var startY = Random.Range(Constants.World.MIN_Y, Constants.World.MAX_Y);
+            enemyCubes.Add(Instantiate(powerUpPrefab, new Vector3(startX, startY, Constants.World.MAX_Z), Quaternion.identity));
+        }
     }
 
     private void GenerateEnemyCubes()
@@ -87,6 +118,17 @@ public class GameController : MonoBehaviour
         // Rotation
         Vector3 rotationVector = new Vector3(Random.Range(-200.0f, 0.0f), Random.Range(-100f, 0.0f), 0);
         enemyCube.transform.Rotate(rotationVector * Time.deltaTime);
+    }
+
+    private void AnimatePowerUp(GameObject powerUp)
+    {
+        Vector3 newPosition = new Vector3(0, 0, Constants.World.ENEMY_SPEED);
+        powerUp.transform.position += newPosition;
+    }
+
+    private void ResetPowerUps()
+    {
+        FireFire.turnOffBullets = false;
     }
 
 }

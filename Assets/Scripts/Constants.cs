@@ -11,6 +11,7 @@ namespace Assets.Scripts
         { 
             // Enemies
             public const int NUM_OF_ENEMIES = 10;
+            public const int NUM_OF_POWERUPS = 10;
             public const int ENEMY_WIDTH = 5;
             public const int ENEMY_MIN_SIZE = 1;
             public const int ENEMY_MAX_SIZE = 5;
@@ -28,6 +29,7 @@ namespace Assets.Scripts
         public static class Tags
         {
             public const string ENEMY_TAG = "Enemy";
+            public const string POWERUP_TAG = "PowerUp";
         }
     }
 }
