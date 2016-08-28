@@ -6,25 +6,22 @@ using Assets.Scripts;
 
 public class GameController : MonoBehaviour
 {
-
     // Use this for initialization
     public GameObject enemyPrefab;
     public GameObject powerUpPrefab;
+    public AudioSource background_music;
     private ArrayList enemyCubes = new ArrayList();
     private ArrayList powerUps = new ArrayList();
     private ArrayList deletedEnemyCubes = new ArrayList();
-    public AudioSource background_music;
+    private float timer = 0.0f;
+    private float enemySpeed = Constants.World.ENEMY_MIN_SPEED;
 
     public void Start()
     {
-        for (int i = 0; i < 10; i++)
-        {
-            int ran = Random.Range(0, 4);
-            print(ran);
-        }
         // Generate new enemies every second
         float interval = 1.5f;
         InvokeRepeating("GenerateEnemyCubes", 0, interval);
+        InvokeRepeating("GenerateDirectHits", 0, Random.Range(3.0f, 5.0f));
 
         float powerUpInterval = 10f;
         InvokeRepeating("GeneratePowerUps", 0, powerUpInterval);
@@ -33,13 +30,16 @@ public class GameController : MonoBehaviour
         InvokeRepeating("ResetPowerUps", 20f, resetPowerUpChangesInterval);
 
         background_music.Play();
-        InvokeRepeating("GenerateDirectHits", 0, Random.Range(3.0f, 5.0f));
     }
 
     // Update is called once per frame
     public void Update()
     {
+        timer += Time.deltaTime;
         deletedEnemyCubes = new ArrayList();
+
+        // Speed up every 10 seconds
+        IncreaseEnemySpeed(10.0f);
 
         // Animate enemies
         foreach (GameObject enemyCube in enemyCubes)
@@ -51,8 +51,7 @@ public class GameController : MonoBehaviour
 
             if (IsOutOfWorldBounds(enemyCube))
             {
-                deletedEnemyCubes.Add(enemyCube)
-                    ;
+                deletedEnemyCubes.Add(enemyCube);
             }
         }
 
@@ -137,12 +136,26 @@ public class GameController : MonoBehaviour
     private void AnimateEnemyCube(GameObject enemyCube)
     {
         // Move
-        Vector3 newPosition = new Vector3(0, 0, Constants.World.ENEMY_MIN_SPEED);
+        Vector3 newPosition = new Vector3(0, 0, enemySpeed);
         enemyCube.transform.position += newPosition;
 
         // Rotation
         Vector3 rotationVector = new Vector3(Random.Range(-200.0f, 0.0f), Random.Range(-100.0f, 0.0f), 0);
         enemyCube.transform.Rotate(rotationVector * Time.deltaTime);
+    }
+
+    private void IncreaseEnemySpeed(float intervalSeconds)
+    {
+        // Increase speed every 5 seconds
+        if (timer > intervalSeconds)
+        {
+            float enemySpeedPos = Mathf.Abs(enemySpeed);
+            if (enemySpeedPos < Mathf.Abs(Constants.World.ENEMY_MAX_SPEED) && enemySpeedPos >= Mathf.Abs(Constants.World.ENEMY_MIN_SPEED))
+            {
+                enemySpeed += Constants.World.ENEMY_SPEED_INCREMENT;
+            }
+            timer = 0.0f;
+        }
     }
 
     private void AnimatePowerUp(GameObject powerUp)
