@@ -9,12 +9,14 @@ public class GameController : MonoBehaviour
     // Use this for initialization
     public GameObject enemyPrefab;
     public GameObject powerUpPrefab;
+    public GameObject npeText;
     public AudioSource background_music;
     private ArrayList enemyCubes = new ArrayList();
     private ArrayList powerUps = new ArrayList();
     private ArrayList deletedEnemyCubes = new ArrayList();
     private float timer = 0.0f;
     private float enemySpeed = Constants.World.ENEMY_MIN_SPEED;
+    public static bool showNPEscreen = false;
 
     public void Start()
     {
@@ -27,7 +29,10 @@ public class GameController : MonoBehaviour
         InvokeRepeating("GeneratePowerUps", 0, powerUpInterval);
 
         float resetPowerUpChangesInterval = 3f;
-        InvokeRepeating("ResetPowerUps", 20f, resetPowerUpChangesInterval);
+        InvokeRepeating("ResetPowerUps", 15f, resetPowerUpChangesInterval);
+
+        //hide npe text
+        npeText.SetActive(false);
 
         background_music.Play();
     }
@@ -73,6 +78,9 @@ public class GameController : MonoBehaviour
             enemyCubes.Remove(enemy);
             Destroy(enemy);
         }
+
+        //show npe screen
+        npeText.SetActive(showNPEscreen);
     }
 
     private bool IsOutOfWorldBounds(GameObject cube)
@@ -168,7 +176,7 @@ public class GameController : MonoBehaviour
     {
         FireFire.turnOffBullets = false;
         FireFire.doubleBullets = false;
-        //SceneManager.LoadScene("main");
+        npeText.SetActive(false);
     }
 
 }
