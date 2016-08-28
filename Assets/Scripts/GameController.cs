@@ -13,8 +13,9 @@ public class GameController : MonoBehaviour
     public void Start()
     {
         // Generate new enemies every second
-        float interval = 2f;
+        float interval = 1.5f;
         InvokeRepeating("GenerateEnemyCubes", 0, interval);
+        InvokeRepeating("GenerateDirectHits", 0, Random.Range(3.0f, 5.0f));
     }
 
     // Update is called once per frame
@@ -25,7 +26,7 @@ public class GameController : MonoBehaviour
         // Animate enemies
         foreach (GameObject enemyCube in enemyCubes)
         {
-            if(enemyCube != null)
+            if (enemyCube != null)
             {
                 AnimateEnemyCube(enemyCube);
             }
@@ -60,32 +61,45 @@ public class GameController : MonoBehaviour
         {
             var startX = Random.Range(Constants.World.MIN_X, Constants.World.MAX_X);
             var startY = Random.Range(Constants.World.MIN_Y, Constants.World.MAX_Y);
-            enemyCubes.Add(Instantiate(enemyPrefab, new Vector3(startX, startY, Constants.World.MAX_Z), Quaternion.identity));
+            GameObject enemyCube = Instantiate(enemyPrefab, new Vector3(startX, startY, Constants.World.MAX_Z), Quaternion.identity) as GameObject;
+            if (enemyCube != null)
+            {
+                DecorateEnemyCube(enemyCube);
+                enemyCubes.Add(enemyCube);
+            }
         }
-
-        // Add styling
-        DecorateEnemyCubes();
     }
 
-    private void DecorateEnemyCubes()
+    private void GenerateDirectHits()
     {
-        foreach (GameObject enemyCube in enemyCubes)
-        {
-            // Size
-            var scaleRange = Random.Range(Constants.World.ENEMY_MIN_SIZE, Constants.World.ENEMY_MAX_SIZE);
-            Vector3 scaleVector = new Vector3(scaleRange, scaleRange, scaleRange);
-            enemyCube.transform.localScale = scaleVector;
-        }
+        // Generate enemies that go directly to player between 2-8 seconds.
+        Invoke("GenerateDirectHitEnemyCube", Random.Range(4.0f, 8.0f));
+    }
+
+    private void GenerateDirectHitEnemyCube()
+    {
+        // Always hits the player
+        GameObject hitPlayerCube = Instantiate(enemyPrefab, new Vector3(0, 0, Constants.World.MAX_Z), Quaternion.identity) as GameObject;
+        DecorateEnemyCube(hitPlayerCube);
+        enemyCubes.Add(hitPlayerCube);
+    }
+
+    private void DecorateEnemyCube(GameObject enemyCube)
+    {
+        // Size
+        var scaleRange = Random.Range(Constants.World.ENEMY_MIN_SIZE, Constants.World.ENEMY_MAX_SIZE);
+        Vector3 scaleVector = new Vector3(scaleRange, scaleRange, scaleRange);
+        enemyCube.transform.localScale = scaleVector;
     }
 
     private void AnimateEnemyCube(GameObject enemyCube)
     {
         // Move
-        Vector3 newPosition = new Vector3(0, 0, Constants.World.ENEMY_SPEED);
+        Vector3 newPosition = new Vector3(0, 0, Constants.World.ENEMY_MIN_SPEED);
         enemyCube.transform.position += newPosition;
 
         // Rotation
-        Vector3 rotationVector = new Vector3(Random.Range(-200.0f, 0.0f), Random.Range(-100f, 0.0f), 0);
+        Vector3 rotationVector = new Vector3(Random.Range(-200.0f, 0.0f), Random.Range(-100.0f, 0.0f), 0);
         enemyCube.transform.Rotate(rotationVector * Time.deltaTime);
     }
 
