@@ -168,7 +168,7 @@ public class GameController : MonoBehaviour
     {
         FireFire.turnOffBullets = false;
         FireFire.doubleBullets = false;
-        SceneManager.LoadScene("main");
+        //SceneManager.LoadScene("main");
     }
 
 }
