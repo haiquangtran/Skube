@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using System.Collections;
 using Assets.Scripts;
 using System;
@@ -27,8 +28,28 @@ public class BulletScript : MonoBehaviour {
         }
         else if (other.collider.tag == Constants.Tags.POWERUP_TAG)
         {
+
+            Destroy(other.gameObject);
+            Score.score += 50;
+
+            int turnOffBullets = UnityEngine.Random.Range(0, 3);
+            if(turnOffBullets == 1)
+            {
+                FireFire.turnOffBullets = true;
+                Debug.Log("bad power up");
+            }
+            else if (turnOffBullets == 2)
+            {
+                Debug.Log("good power up");
+                FireFire.doubleBullets = true;
+            }
+            else
+            {
+                SceneManager.LoadScene("NPEscreen");       
+            }
             powerUpCollision(other);
             incrementScore(50);
+
         }
     }
 
