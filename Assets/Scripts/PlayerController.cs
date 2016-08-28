@@ -33,12 +33,12 @@ public class PlayerController : MonoBehaviour
             {
                 GameOver();
             }
-
         }
     }
 
     private void GameOver()
     {
         Debug.Log("YOU LOOSE");
+        Application.LoadLevel(Application.loadedLevel);
     }
 }
