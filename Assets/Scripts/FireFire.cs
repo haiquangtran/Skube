@@ -74,7 +74,7 @@ public class FireFire : MonoBehaviour {
         Temporary_RigidBody.AddForce(transform.forward * Bullet_Forward_Force);
 
         //Basic Clean Up, set the Bullets to self destruct after 10 Seconds, I am being VERY generous here, normally 3 seconds is plenty.
-        Destroy(Temporary_Bullet_Handler, 10.0f);
+        Destroy(Temporary_Bullet_Handler, 2f);
 
         weapon_player.Play();
     }

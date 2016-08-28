@@ -87,7 +87,7 @@ public class BulletScript : MonoBehaviour {
         Temporary_RigidBody = fragmentHandler.GetComponent<Rigidbody>();
 
         //Basic Clean Up, set the Bullets to self destruct after 10 Seconds, I am being VERY generous here, normally 3 seconds is plenty.
-        Destroy(fragmentHandler, .5f);
+        Destroy(fragmentHandler, 2f);
 
     }
 
